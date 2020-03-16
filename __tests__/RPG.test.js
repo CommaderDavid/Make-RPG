@@ -12,3 +12,23 @@ describe('MainGame', () => {
     expect(startGame.enemy).toEqual("Cyborg");
   });
 });
+
+describe('Player', () => {
+
+  test('should show how hard the player hits and their total hit points', () => {
+    var chris = new Player(84, 9);
+
+    expect(chris.hitPoints).toEqual(84);
+    expect(chris.attack).toEqual(9);
+  });
+});
+
+describe('Enemy', () => {
+
+  test('should show enemy health and attack damage', () => {
+    var cyborg = new Enemy(108, 20);
+
+    expect(cyborg.hitPoints).toEqual(108);
+    expect(cyborg.attack).toEqual(20);
+  })
+})
