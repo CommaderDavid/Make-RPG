@@ -6,17 +6,27 @@ import { Enemy } from "./../src/enemy.js";
 describe('MainGame', () => {
 
   test('should see a player character and enemy', () => {
-    var startGame = new MainGame("John", "Cyborg");
+    const john = new Player(10, 3);
+    const cyborg = new Enemy(10, 10);
+    let startGame = new MainGame(john, cyborg);
 
-    expect(startGame.player).toEqual("John");
-    expect(startGame.enemy).toEqual("Cyborg");
+    expect(startGame.player).toEqual(john);
+    expect(startGame.enemy).toEqual(cyborg);
+  });
+
+  test('player should get hit and lose hp', () => {
+    const john = new Player(10, 3);
+    const cyborg = new Enemy(10, 10);
+    let startGame = new MainGame(john, cyborg);
+
+    expect(startGame.playerHit(john.hitPoints, cyborg.attack)).toEqual(0);
   });
 });
 
 describe('Player', () => {
 
   test('should show how hard the player hits and their total hit points', () => {
-    var chris = new Player(84, 9);
+    const chris = new Player(84, 9);
 
     expect(chris.hitPoints).toEqual(84);
     expect(chris.attack).toEqual(9);
@@ -26,7 +36,7 @@ describe('Player', () => {
 describe('Enemy', () => {
 
   test('should show enemy health and attack damage', () => {
-    var cyborg = new Enemy(108, 20);
+    const cyborg = new Enemy(108, 20);
 
     expect(cyborg.hitPoints).toEqual(108);
     expect(cyborg.attack).toEqual(20);

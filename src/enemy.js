@@ -3,8 +3,4 @@ export class Enemy {
     this.hitPoints = hitPoints;
     this.attack = attack;
   }
-
-  // takeHit() {
-  //   hitPoints -=
-  // }
 }
