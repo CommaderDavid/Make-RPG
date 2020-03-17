@@ -1,0 +1,10 @@
+.enemy {
+  float: right;
+  width: 100px;
+}
+
+.player {
+  float: left;
+  margin-top: 200px;
+
+}
