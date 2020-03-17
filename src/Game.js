@@ -10,6 +10,12 @@ export class MainGame {
   playerHit(player, enemyAttack) {
     player -= enemyAttack;
     console.log("player is hit!");
-    return player
+    return player;
+  }
+
+  enemyHit(enemy, playerAttack) {
+    enemy -= playerAttack;
+    console.log("enemy is Hit!" + enemy);
+    return enemy;
   }
 }
