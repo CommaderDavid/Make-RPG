@@ -18,8 +18,8 @@ $(document).ready(function() {
     $("button#strike").prop("disabled", true);
     $("button#end").prop("disabled", false);
 
-    if (en1.hitPoints >= 0) {
-      
+    if (en1.hitPoints <= 0) {
+      $(".results").append("<h3>" + "You Win!" + "</h3>");
     }
   });
 
@@ -29,8 +29,8 @@ $(document).ready(function() {
     $("button#end").prop("disabled", true);
     $("button#strike").prop("disabled", false);
 
-    if (en1.hitPoints >= 0) {
-
-    }
+    // if (en1.hitPoints >= 0) {
+    //
+    // }
   });
 });
