@@ -8,14 +8,12 @@ export class MainGame {
   }
 
   playerHit(player, enemyAttack) {
-    player -= enemyAttack;
-    console.log("player is hit!");
+    player.hitPoints -= enemyAttack;
     return player;
   }
 
   enemyHit(enemy, playerAttack) {
-    enemy -= playerAttack;
-    console.log("enemy is Hit!" + enemy);
+    enemy.hitPoints -= playerAttack;
     return enemy;
   }
 }
