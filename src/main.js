@@ -9,6 +9,7 @@ import { Enemy } from './enemy.js';
 $(document).ready(function() {
   const player = new Player(10, 5);
   const en1 = new Enemy(15, 3);
+  const boss = new Enemy(50, 15);
   const startGame = new MainGame(player, en1);
 
   $("#enemyHP").append(en1.hitPoints);
@@ -25,7 +26,8 @@ $(document).ready(function() {
     $("button#end").prop("disabled", false);
 
     if (en1.hitPoints <= 0) {
-      $("#results").empty().append("<h3>" + "You Win!" + "</h3>");
+      // $("#results").empty().append("<h3>" + "You Win!" + "</h3>");
+
     }
   });
 

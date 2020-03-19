@@ -18,16 +18,18 @@ describe('MainGame', () => {
     const john = new Player(10, 3);
     const cyborg = new Enemy(10, 10);
     let startGame = new MainGame(john, cyborg);
+    const hit = startGame.playerHit(john, cyborg.attack);
 
-    expect(startGame.playerHit(john, cyborg.attack)).toEqual(0);
+    expect(hit.hitPoints).toEqual(0);
   });
 
   test('enemy should get hit and lose hp', () => {
     const john = new Player(10, 3);
     const cyborg = new Enemy(10, 10);
     let startGame = new MainGame(john, cyborg);
+    const hit = startGame.playerHit(cyborg, john.attack);
 
-    expect(startGame.enemyHit(cyborg, john.attack)).toEqual(7);
+    expect(hit.hitPoints).toEqual(7);
   });
 });
 
