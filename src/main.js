@@ -11,6 +11,8 @@ $(document).ready(function() {
   let en1 = new Enemy(15, 3);
   let boss = new Enemy(50, 15);
   const startGame = new MainGame(player, en1);
+  const bossFight = new MainGame(player, boss);
+
 
   $("#enemyHP").append(en1.hitPoints);
   $("#playerHP").append(player.hitPoints);
