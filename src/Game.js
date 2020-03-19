@@ -16,4 +16,8 @@ export class MainGame {
     enemy.hitPoints -= playerAttack;
     return enemy;
   }
+
+  switchEnemy() {
+    
+  }
 }

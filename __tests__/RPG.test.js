@@ -31,6 +31,10 @@ describe('MainGame', () => {
 
     expect(hit.hitPoints).toEqual(7);
   });
+
+  test('should switch to boss after enemy is defeated', () => {
+    
+  });
 });
 
 describe('Player', () => {

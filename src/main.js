@@ -8,8 +8,8 @@ import { Enemy } from './enemy.js';
 
 $(document).ready(function() {
   const player = new Player(10, 5);
-  const en1 = new Enemy(15, 3);
-  const boss = new Enemy(50, 15);
+  let en1 = new Enemy(15, 3);
+  let boss = new Enemy(50, 15);
   const startGame = new MainGame(player, en1);
 
   $("#enemyHP").append(en1.hitPoints);
