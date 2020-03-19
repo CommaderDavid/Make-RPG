@@ -1,16 +1,13 @@
-.enemy {
+#enemy {
   float: right;
-  margin-right: 150px;
 }
 
-.player {
+#player {
   float: left;
   margin-top: 200px;
 }
 
-.results {
-  float: left;
-  margin-left: 500px;
-  margin-top: 400px;
+#results {
+  margin-top: 100px;
+  margin-left: 100px;
 }
-/* make rows */

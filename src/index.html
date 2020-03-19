@@ -8,22 +8,28 @@
       <div class="jumbotron">
         <h1>Start!</h1>
       </div>
-      <div id="game">
-        <div class="enemy">
-          <h3>Enemy:</h3>
-          <p></p>
-          <!-- <img src="./src/img/enemyHP.png" alt="Enemy HP" id="enemyHP"> -->
+      <div class="row">
+        <div class="col-md-4">
+          <div id="player">
+            <h3>You:</h3>
+            <p id="playerHP"></p>
+            <!-- <img src="" alt="Player HP" id="playerHP"> -->
+            <button type="button" data-toggle="button" class="btn btn-danger" id="strike">Attack</button>
+            <button type="button" class="btn btn-success" disabled id="end">End Turn</button>
+          </div>
         </div>
-        <div class="results">
+        <div class="col-md-4">
+          <div id="results">
 
-          <!-- <img src="" alt=""> -->
+            <!-- <img src="" alt=""> -->
+          </div>
         </div>
-        <div class="player">
-          <h3>You:</h3>
-          <p></p>
-          <!-- <img src="" alt="Player HP" id="playerHP"> -->
-          <button type="button" data-toggle="button" class="btn btn-danger" id="strike">Attack</button>
-          <button type="button" class="btn btn-success" disabled id="end">End Turn</button>
+        <div class="col-md-4">
+          <div id="enemy">
+            <h3>Enemy:</h3>
+            <p id="enemyHP"></p>
+            <!-- <img src="./src/img/enemyHP.png" alt="Enemy HP" id="enemyHP"> -->
+          </div>
         </div>
       </div>
     </div>
