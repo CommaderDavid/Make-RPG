@@ -13,11 +13,13 @@ export class MainGame {
   }
 
   enemyHit(enemy, playerAttack) {
-    enemy.hitPoints -= playerAttack;
-    return enemy;
-  }
-
-  switchEnemy() {
-    
+    if (enemy.hitPoints > 0) {
+      enemy.hitPoints -= playerAttack;
+      return enemy;
+    } else if (enemy.hitPoints <= 0) {
+      enemy.inCombat = false;
+      enemy.dead = true;
+      return enemy;
+    }
   }
 }

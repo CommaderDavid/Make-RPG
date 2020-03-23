@@ -1,5 +1,6 @@
 // use "debugger" to look for bugs and broken code.
 import { MainGame } from "./../src/Game.js";
+import { CurrentFighter } from "./../src/currentFighter.js";
 import { Player } from "./../src/player.js";
 import { Enemy } from "./../src/enemy.js";
 
@@ -27,13 +28,9 @@ describe('MainGame', () => {
     const john = new Player(10, 3);
     const cyborg = new Enemy(10, 10);
     let startGame = new MainGame(john, cyborg);
-    const hit = startGame.playerHit(cyborg, john.attack);
+    const hit = startGame.enemyHit(cyborg, john.attack);
 
     expect(hit.hitPoints).toEqual(7);
-  });
-
-  test('should switch to boss after enemy is defeated', () => {
-    
   });
 });
 
@@ -54,5 +51,23 @@ describe('Enemy', () => {
 
     expect(cyborg.hitPoints).toEqual(108);
     expect(cyborg.attack).toEqual(20);
-  })
-})
+    expect(cyborg.inCombat).toEqual(true);
+  });
+});
+
+describe('CurrentFighter', () => {
+
+  test('should switch to boss after enemy is defeated', () => {
+    const john = new Player(10, 10);
+    const cyborg = new Enemy(0, 10);
+    let startGame = new MainGame(john, cyborg);
+
+    const hitEnemy = startGame.enemyHit(cyborg, john.attack);
+
+    let killedEnemy = new CurrentFighter(hitEnemy);
+
+    let action = killedEnemy.switchEnemy();
+
+    expect(action).toEqual(true);
+  });
+});
