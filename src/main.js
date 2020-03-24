@@ -8,44 +8,49 @@ import { Player } from './player.js';
 import { Enemy } from './enemy.js';
 
 $(document).ready(function() {
-  const player = new Player(10, 5);
+  const player = new Player(500, 5);
   const en1 = new Enemy(15, 3);
   const en2 =new Enemy(10, 9);
   const boss = new Enemy(50, 15);
 
   let enemySwitch = en1;
-  if (en1.inCombat === false) {
-    enemySwitch = en2;
-  } else if (en2 === false;) {
-    enemySwitch = boss;
-    // need to find a way to turn enemys in combat trait to false if not active
-  }
-  
+
   const startGame = new MainGame(player, enemySwitch);
   const currentBattle = new CurrentFighter(enemySwitch);
 
-  $("#enemyHP").append(en1.hitPoints);
+  $("#enemyHP").append(enemySwitch.hitPoints);
   $("#playerHP").append(player.hitPoints);
 
   $("#strike").click(function(e) {
     e.preventDefault();
 
-    startGame.enemyHit(en1, player.attack);
+    if (en1.dead === true) {
+      $("#results").empty();
+      enemySwitch = en2;
+      console.log(enemySwitch, "enemy2");
+    } else if (en1.dead === true && en2.dead === true) {
+      $("#results").empty();
+      enemySwitch = boss;
+      console.log(enemySwitch, "boss");
+      // need to find a way to turn enemys in combat trait to false if not active
+    }
+
+    startGame.enemyHit(enemySwitch, player.attack);
     console.log(startGame.enemy.hitPoints);
 
-    $("#enemyHP").empty().append(en1.hitPoints);
+    $("#enemyHP").empty().append(enemySwitch.hitPoints);
 
     $("button#strike").prop("disabled", true);
     $("button#end").prop("disabled", false);
 
-    if (en1.hitPoints <= 0) {
-      // $("#results").empty().append("<h3>" + "You Win!" + "</h3>");
+    if (enemySwitch.hitPoints <= 0) {
+      $("#results").empty().append("<h3>" + "You Win!" + "</h3> <br>" + "<h3>" + "Next oppenet" + "</h3>");
 
     }
   });
 
   $("#end").click(function() {
-    startGame.playerHit(player, en1.attack);
+    startGame.playerHit(player, enemySwitch.attack);
     console.log(startGame.player.hitPoints);
 
     $("#playerHP").empty().append(player.hitPoints);
