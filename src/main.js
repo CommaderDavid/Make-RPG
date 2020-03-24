@@ -10,7 +10,9 @@ import { Enemy } from './enemy.js';
 $(document).ready(function() {
   const player = new Player(500, 5);
   const en1 = new Enemy(15, 3);
-  const en2 =new Enemy(10, 9);
+  const en2 = new Enemy(10, 9);
+  const en3 = new Enemy(20, 5);
+  const en4 = new Enemy(15, 12);
   const boss = new Enemy(50, 15);
 
   let enemySwitch = en1;
@@ -19,37 +21,35 @@ $(document).ready(function() {
   const currentBattle = new CurrentFighter(enemySwitch);
 
   $("#enemyHP").append(enemySwitch.hitPoints);
+  $("#typeEnemy").append("First Enemy");
   $("#playerHP").append(player.hitPoints);
 
   $("#strike").click(function(e) {
     e.preventDefault();
-    console.log(en1, "en1");
-    console.log(en2, "en2");
-    console.log(boss, "boss");
 
     startGame.enemyHit(enemySwitch, player.attack);
     console.log(startGame.enemy.hitPoints, "enemy hit");
 
     if (en1.dead === true && en2.dead === false) {
+      $("#results").empty();
       enemySwitch = en2;
-      console.log(enemySwitch, "enemy2");
-      // need to find a way to turn enemys in combat trait to false if not active
-    } else if (en1.dead === true && en2.dead === true) {
+      $("#typeEnemy").empty().append("Second Enemy");
+
+    } else if (en2.dead === true && en3.dead === false) {
+      $("#results").empty();
+      enemySwitch = en3;
+      $("#typeEnemy").empty().append("Third Enemy");
+
+    } else if (en3.dead === true && en4.dead === false) {
+      $("#results").empty();
+      enemySwitch = en4;
+      $("#typeEnemy").empty().append("Forth Enemy");
+
+    } else if (en1.dead === true && en2.dead === true &&en3.dead === true && en4.dead === true) {
+      $("#results").empty();
       enemySwitch = boss;
-      console.log(enemySwitch, "boss");
+      $("#typeEnemy").empty().append("Big Bad Boss");
     }
-
-    // if (currentBattle.switchEnemy(en2) === true && currentBattle.switchEnemy(en1) === true) {
-    //   console.log(currentBattle.switchEnemy(en2), "is enemy 2 dead");
-    //   console.log(currentBattle.switchEnemy(en1), "is enemy 1 dead");
-    //   enemySwitch = boss;
-    //   console.log(enemySwitch, "boss");
-    //   // need to find a way to turn enemys in combat trait to false if not active
-    // } else if (currentBattle.switchEnemy(en1) === true) {
-    //   enemySwitch = en2;
-    //   console.log(enemySwitch, "enemy2");
-    // }
-
 
     $("#enemyHP").empty().append(enemySwitch.hitPoints);
 
