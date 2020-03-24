@@ -28,8 +28,8 @@ $(document).ready(function() {
     e.preventDefault();
 
     startGame.enemyHit(enemySwitch, player.attack);
-    console.log(startGame.enemy.hitPoints, "enemy hit");
 
+    // Changes the enemies when their hit points reach 0.
     if (en1.dead === true && en2.dead === false) {
       $("#results").empty();
       enemySwitch = en2;
@@ -58,7 +58,6 @@ $(document).ready(function() {
 
     if (enemySwitch.hitPoints <= 0) {
       $("#results").empty().append("<h3>" + "You Win!" + "</h3> <br>" + "<h3>" + "Next oppenet" + "</h3>");
-
     }
   });
 
