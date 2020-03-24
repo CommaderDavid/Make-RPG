@@ -23,20 +23,33 @@ $(document).ready(function() {
 
   $("#strike").click(function(e) {
     e.preventDefault();
-
-    if (en1.dead === true) {
-      $("#results").empty();
-      enemySwitch = en2;
-      console.log(enemySwitch, "enemy2");
-    } else if (en1.dead === true && en2.dead === true) {
-      $("#results").empty();
-      enemySwitch = boss;
-      console.log(enemySwitch, "boss");
-      // need to find a way to turn enemys in combat trait to false if not active
-    }
+    console.log(en1, "en1");
+    console.log(en2, "en2");
+    console.log(boss, "boss");
 
     startGame.enemyHit(enemySwitch, player.attack);
-    console.log(startGame.enemy.hitPoints);
+    console.log(startGame.enemy.hitPoints, "enemy hit");
+
+    if (en1.dead === true && en2.dead === false) {
+      enemySwitch = en2;
+      console.log(enemySwitch, "enemy2");
+      // need to find a way to turn enemys in combat trait to false if not active
+    } else if (en1.dead === true && en2.dead === true) {
+      enemySwitch = boss;
+      console.log(enemySwitch, "boss");
+    }
+
+    // if (currentBattle.switchEnemy(en2) === true && currentBattle.switchEnemy(en1) === true) {
+    //   console.log(currentBattle.switchEnemy(en2), "is enemy 2 dead");
+    //   console.log(currentBattle.switchEnemy(en1), "is enemy 1 dead");
+    //   enemySwitch = boss;
+    //   console.log(enemySwitch, "boss");
+    //   // need to find a way to turn enemys in combat trait to false if not active
+    // } else if (currentBattle.switchEnemy(en1) === true) {
+    //   enemySwitch = en2;
+    //   console.log(enemySwitch, "enemy2");
+    // }
+
 
     $("#enemyHP").empty().append(enemySwitch.hitPoints);
 
@@ -51,7 +64,7 @@ $(document).ready(function() {
 
   $("#end").click(function() {
     startGame.playerHit(player, enemySwitch.attack);
-    console.log(startGame.player.hitPoints);
+    console.log(startGame.player.hitPoints, "player hit");
 
     $("#playerHP").empty().append(player.hitPoints);
 
