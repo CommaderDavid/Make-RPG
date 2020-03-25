@@ -7,22 +7,20 @@ export class MainGame {
     this.enemy = enemy;
   }
 
-  playerHit(player, enemyAttack) {
+  playerHit(enemyAttack) {
     this.player.hitPoints -= enemyAttack;
-    return player;
-  }
-
-  playerReset() {
-    this.player.hitPoints += this.player.recovery;
   }
 
   enemyHit(enemy, playerAttack) {
     if (enemy.hitPoints > 0) {
       enemy.hitPoints -= playerAttack;
+      enemy.inCombat = true;
       return enemy;
     } else if (enemy.hitPoints <= 0) {
+      // this works on healing the player when the enemy switches
       enemy.inCombat = false;
       enemy.dead = true;
+      this.player.hitPoints += this.player.recovery;
       return enemy;
     }
   }
