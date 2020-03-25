@@ -8,8 +8,13 @@ export class MainGame {
   }
 
   playerHit(player, enemyAttack) {
-    player.hitPoints -= enemyAttack;
+    this.player.hitPoints -= enemyAttack;
     return player;
+  }
+
+  playerReset() {
+    this.player.hitPoints += this.player.recovery;
+    console.log("inside playerReset", this.player.hitPoints);
   }
 
   enemyHit(enemy, playerAttack) {

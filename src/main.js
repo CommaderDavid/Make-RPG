@@ -8,9 +8,9 @@ import { Player } from './player.js';
 import { Enemy } from './enemy.js';
 
 $(document).ready(function() {
-  const player = new Player(500, 5);
+  const player = new Player(18, 5, 10);
   const en1 = new Enemy(15, 3);
-  const en2 = new Enemy(10, 9);
+  const en2 = new Enemy(10, 5);
   const en3 = new Enemy(20, 5);
   const en4 = new Enemy(15, 12);
   const boss = new Enemy(50, 15);
@@ -64,6 +64,21 @@ $(document).ready(function() {
   $("#end").click(function() {
     startGame.playerHit(player, enemySwitch.attack);
     console.log(startGame.player.hitPoints, "player hit");
+
+    console.log(startGame.player, "startGame.player");
+
+    if (en1.dead === true && en2.dead === false) {
+      startGame.playerReset();
+      console.log(startGame.player.hitPoints, "Hit points inside if");
+      console.log(player.hitPoints, "add health back");
+    } else if (en2.inCombat === false && en3.inCombat === true) {
+      startGame.playerReset();
+      console.log(player.hitPoints, "add health back");
+    } else if (en3.inCombat === false && en4.inCombat === true) {
+      startGame.playerReset();
+    }else if (en4.inCombat === false && boss.inCombat === true) {
+      startGame.playerReset();
+    }
 
     $("#playerHP").empty().append(player.hitPoints);
 
