@@ -8,12 +8,12 @@ import { Player } from './player.js';
 import { Enemy } from './enemy.js';
 
 $(document).ready(function() {
-  const player = new Player(500, 5);
+  const player = new Player(18, 5, 15);
   const en1 = new Enemy(15, 3);
-  const en2 = new Enemy(10, 9);
+  const en2 = new Enemy(10, 6);
   const en3 = new Enemy(20, 5);
-  const en4 = new Enemy(15, 12);
-  const boss = new Enemy(50, 15);
+  const en4 = new Enemy(5, 12);
+  const boss = new Enemy(30, 7);
 
   let enemySwitch = en1;
 
@@ -28,6 +28,7 @@ $(document).ready(function() {
     e.preventDefault();
 
     startGame.enemyHit(enemySwitch, player.attack);
+    $("#enemyHP").empty().append(enemySwitch.hitPoints);
 
     // Changes the enemies when their hit points reach 0.
     if (en1.dead === true && en2.dead === false) {
@@ -50,8 +51,8 @@ $(document).ready(function() {
       enemySwitch = boss;
       $("#typeEnemy").empty().append("Big Bad Boss");
     }
-
-    $("#enemyHP").empty().append(enemySwitch.hitPoints);
+    // if statments are good in both business and user, but not all.
+    // Could have put this one in the background to prevent repeats of single use "items"
 
     $("button#strike").prop("disabled", true);
     $("button#end").prop("disabled", false);
@@ -62,9 +63,8 @@ $(document).ready(function() {
   });
 
   $("#end").click(function() {
-    startGame.playerHit(player, enemySwitch.attack);
+    startGame.playerHit(enemySwitch.attack);
     console.log(startGame.player.hitPoints, "player hit");
-
     $("#playerHP").empty().append(player.hitPoints);
 
     $("button#end").prop("disabled", true);
@@ -72,6 +72,9 @@ $(document).ready(function() {
 
     if (player.hitPoints <= 0) {
       $("#results").empty().append("<h3>" + "Game Over" + "</h3>");
+
+      $("button#strike").prop("disabled", true);
+      $("button#end").prop("disabled", true);
     }
   });
 });
