@@ -65,18 +65,16 @@ $(document).ready(function() {
     startGame.playerHit(player, enemySwitch.attack);
     console.log(startGame.player.hitPoints, "player hit");
 
-    console.log(startGame.player, "startGame.player");
-
     if (en1.dead === true && en2.dead === false) {
       startGame.playerReset();
       console.log(startGame.player.hitPoints, "Hit points inside if");
       console.log(player.hitPoints, "add health back");
-    } else if (en2.inCombat === false && en3.inCombat === true) {
+    } else if (en2.dead === true && en3.dead === false) {
       startGame.playerReset();
       console.log(player.hitPoints, "add health back");
-    } else if (en3.inCombat === false && en4.inCombat === true) {
+    } else if (en3.dead === true && en4.dead === false) {
       startGame.playerReset();
-    }else if (en4.inCombat === false && boss.inCombat === true) {
+    }else if (en4.dead === true && boss.dead === false) {
       startGame.playerReset();
     }
 
@@ -88,5 +86,9 @@ $(document).ready(function() {
     if (player.hitPoints <= 0) {
       $("#results").empty().append("<h3>" + "Game Over" + "</h3>");
     }
+  });
+
+  $("#next").click(function() {
+    
   });
 });

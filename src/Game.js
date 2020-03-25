@@ -14,7 +14,6 @@ export class MainGame {
 
   playerReset() {
     this.player.hitPoints += this.player.recovery;
-    console.log("inside playerReset", this.player.hitPoints);
   }
 
   enemyHit(enemy, playerAttack) {
