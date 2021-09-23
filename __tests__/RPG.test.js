@@ -1,73 +1,32 @@
 // use "debugger" to look for bugs and broken code.
-import { MainGame } from "./../src/Game.js";
-import { CurrentFighter } from "./../src/currentFighter.js";
-import { Player } from "./../src/player.js";
-import { Enemy } from "./../src/enemy.js";
+import { stateControl, changeState, powerLevel, hitChance, totalHP } from "./../src/character.js";
 
-describe('MainGame', () => {
+describe('stateControl', () => {
 
-  test('should see a player character and enemy', () => {
-    const john = new Player(10, 3);
-    const cyborg = new Enemy(10, 10);
-    let startGame = new MainGame(john, cyborg);
+    test('should populate an enemy instance', () => {
+        let newPower = changeState("power")(0)
+        let newState = stateControl(newPower)
+        expect(newState).toEqual({ power: 0 })
+    });
 
-    expect(startGame.player).toEqual(john);
-    expect(startGame.enemy).toEqual(cyborg);
-  });
+    test('should change enemy instance and give a power level', () => {
+        let newPower = changeState("power")(5)
+        let level = powerLevel(2)
+        let newState = stateControl(newPower)
+        expect(level(newState.power)).toEqual(10)
+    })
 
-  test('player should get hit and lose hp', () => {
-    const john = new Player(10, 3);
-    const cyborg = new Enemy(10, 10);
-    let startGame = new MainGame(john, cyborg);
-    const hit = startGame.playerHit(john, cyborg.attack);
+    test('should create a hit chance instance', () => {
+        let newDodge = changeState("dodge")(50)
+        let weight = hitChance(40)
+        let newState = stateControl(newDodge)
+        expect(weight(newState.dodge)).toEqual(10)
+    })
 
-    expect(hit.hitPoints).toEqual(0);
-  });
-
-  test('enemy should get hit and lose hp', () => {
-    const john = new Player(10, 3);
-    const cyborg = new Enemy(10, 10);
-    let startGame = new MainGame(john, cyborg);
-    const hit = startGame.enemyHit(cyborg, john.attack);
-
-    expect(hit.hitPoints).toEqual(7);
-  });
-});
-
-describe('Player', () => {
-
-  test('should show how hard the player hits and their total hit points', () => {
-    const chris = new Player(84, 9);
-
-    expect(chris.hitPoints).toEqual(84);
-    expect(chris.attack).toEqual(9);
-  });
-});
-
-describe('Enemy', () => {
-
-  test('should show enemy health and attack damage', () => {
-    const cyborg = new Enemy(108, 20);
-
-    expect(cyborg.hitPoints).toEqual(108);
-    expect(cyborg.attack).toEqual(20);
-    expect(cyborg.inCombat).toEqual(true);
-  });
-});
-
-describe('CurrentFighter', () => {
-
-  test('should switch to boss after enemy is defeated', () => {
-    const john = new Player(10, 10);
-    const cyborg = new Enemy(0, 10);
-    let startGame = new MainGame(john, cyborg);
-
-    const hitEnemy = startGame.enemyHit(cyborg, john.attack);
-
-    let killedEnemy = new CurrentFighter(hitEnemy);
-
-    let action = killedEnemy.switchEnemy();
-
-    expect(action).toEqual(true);
-  });
-});
+    test('should create total Hit points', () => {
+        let newHitPoints = changeState("hp")(20)
+        let armor = totalHP(30)
+        let newState = stateControl(newHitPoints)
+        expect(armor(newState.hp)).toEqual(50)
+    })
+})
