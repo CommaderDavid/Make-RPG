@@ -7,7 +7,7 @@ import { CurrentFighter } from './currentFighter.js';
 import { Player } from './player.js';
 import { Enemy } from './enemy.js';
 
-$(document).ready(function() {
+$(document).ready(function () {
   const player = new Player(18, 5, 15);
   const en1 = new Enemy(15, 3);
   const en2 = new Enemy(10, 6);
@@ -24,7 +24,7 @@ $(document).ready(function() {
   $("#typeEnemy").append("First Enemy");
   $("#playerHP").append(player.hitPoints);
 
-  $("#strike").click(function(e) {
+  $("#strike").click(function (e) {
     e.preventDefault();
 
     startGame.enemyHit(enemySwitch, player.attack);
@@ -46,7 +46,7 @@ $(document).ready(function() {
       enemySwitch = en4;
       $("#typeEnemy").empty().append("Forth Enemy");
 
-    } else if (en1.dead === true && en2.dead === true &&en3.dead === true && en4.dead === true) {
+    } else if (en1.dead === true && en2.dead === true && en3.dead === true && en4.dead === true) {
       $("#results").empty();
       enemySwitch = boss;
       $("#typeEnemy").empty().append("Big Bad Boss");
@@ -62,7 +62,7 @@ $(document).ready(function() {
     }
   });
 
-  $("#end").click(function() {
+  $("#end").click(function () {
     startGame.playerHit(enemySwitch.attack);
     console.log(startGame.player.hitPoints, "player hit");
     $("#playerHP").empty().append(player.hitPoints);
