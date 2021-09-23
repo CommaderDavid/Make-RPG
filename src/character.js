@@ -18,14 +18,14 @@ export const changeState = (prop) => {
   }
 }
 
-export function powerLevel(strength) {
-  return function (level) {
+export function powerLevel(level) {
+  return function (strength) {
     return Math.trunc(level * strength);
   }
 }
 
-export function hitChance(dodge) {
-  return function (armorWeight) {
+export function hitChance(armorWeight) {
+  return function (dodge) {
     return Math.trunc(dodge - armorWeight);
   }
 }
